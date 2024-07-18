@@ -1,0 +1,112 @@
+<div class="body">
+  <div class="cover"></div>
+  <div class="parent">
+    <div class="chatleft">
+      <div class="chatbox" id="chatbox" #chatbox>
+        <img
+          class="stubg"
+          src="../../../assets/images/bigstu.png"
+          alt="Stu Background"
+        />
+        <div
+          *ngFor="let msg of chatHistory"
+          [attr.data-id]="msg.id"
+          [ngClass]="{
+            'bot-message': msg.sender === 'bot',
+            'user-message': msg.sender === 'user'
+          }"
+          class="chat-message"
+        >
+          <span [innerHTML]="msg.message"></span>
+          <img
+            *ngIf="msg.sender === 'user'"
+            class="userImage"
+            src="../../../assets/images/user.png"
+            alt="User Avatar"
+          />
+          <div *ngIf="msg.sender === 'bot'">
+            <img
+              class="BotImg"
+              src="../../../assets/images/stu.png"
+              alt="Bot Avatar"
+            />
+            <div class="likeRow">
+              <div class="L">
+                <button (click)="likeMessage(msg)">
+                  <img src="../../../assets/images/like.png" alt="Like" />
+                </button>
+                <button (click)="dislikeMessage(msg)">
+                  <img src="../../../assets/images/dislike.png" alt="Dislike" />
+                </button>
+              </div>
+              <button (click)="copyToClipboard(msg.message)">
+                <img src="../../../assets/images/Group.png" alt="Copy" />
+                <p>copy</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="submiter">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="შეეკითხე რისი გაგებაც გსურს"
+          (keydown.enter)="sendMessage(userInput.value)"
+          (input)="validateGeorgianInput($event)"
+          [formControl]="userInput"
+        />
+        <button (click)="sendMessage(userInput.value)">
+          <img src="../../../assets/images/send.png" alt="Send" />
+        </button>
+      </div>
+    </div>
+
+    <div class="chatright">
+      <div class="Profile">
+        <div class="profileN">
+          <img
+            class="ProfileImg"
+            src="../../../assets/images/user.png"
+            alt="User Profile"
+          />
+          <p>gtu student</p>
+        </div>
+        <div class="btnparent">
+          <button class="PB Bell">
+            <img
+              class="Notification"
+              src="../../../assets/images/bell.png"
+              alt="Notifications"
+            />
+          </button>
+          <button class="PB">
+            <img
+              class="settings PB"
+              src="../../../assets/images/settings.png"
+              alt="Settings"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="chatHistory">
+        <div class="row">
+          <h3>ისტორია</h3>
+          <button
+            class="round"
+            style="border-radius: 50%; width: 40px; height: 40px"
+          >
+            <img src="../../../assets/images/messege.png" alt="Message" />
+          </button>
+        </div>
+        <div class="main">
+          <!-- Chat history can be dynamically added here -->
+        </div>
+        <button class="newChat">
+          <img src="../../../assets/images/plus.png" alt="New Chat" /> ახალი
+          ჩატი
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

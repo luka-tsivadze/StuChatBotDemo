@@ -1,0 +1,70 @@
+<div class="cover"></div>
+<div class="cover2"></div>
+<div class="parent">
+
+<div class="leftSide">
+    <img class="TL Z" src="../../../assets/img/TL.png" alt="">
+    <img class="TL" src="../../../assets/img/pictures/head.png" alt="">
+    <img src="../../../assets/img/Stars.png" class="star1 star" alt="">
+    <img src="../../../assets/img/Stars.png" class="star2 star" alt="">
+    <img src="../../../assets/img/Stars.png" class="star3 star" alt="">
+    <img src="../../../assets/img/Stars.png" class="star4 star" alt="">
+    <img src="../../../assets/img/Stars.png" class="star5 star" alt="">
+    <img src="../../../assets/img/Subtract.png" class="TR star" alt="">
+    <img class="TM" src="../../../assets/img/stu.png" alt="">
+    <img class="Robot" src="../../../assets/img/pictures/robot chatbotrobot.png" alt="">
+    <img class="spyral" src="../../../assets/img/spyral.png" alt="">
+    <img src="../../../assets/img/Teamcircles.png" class="Last star" alt="">
+</div>
+<div class="rightSide">
+
+    <h3>ავტორიზაცია <br/>
+        შეიყვანეთ თქვენი სტუდენტური მეილი</h3>
+        <div class="row"><img src="../../../assets/img/Line 1Line.png" alt=""></div>
+        <form [formGroup]="userInfo" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" placeholder="example@gtu.ge" formControlName="email" 
+                     [class.ng-invalid]="userInfo.get('email')?.invalid && userInfo.get('email')?.touched" 
+                     [class.ng-touched]="userInfo.get('email')?.touched">
+              <div class="error" *ngIf="userInfo.get('email')?.invalid && userInfo.get('email')?.touched">
+                @if(userInfo.get('email')?.errors?.['required']) {
+                  <small>Email is required.</small>
+                }
+                @if(!userInfo.get('email')?.errors?.['required'] && userInfo.get('email')?.errors?.['email']) {
+                  <small>Invalid email format.</small>
+                }
+                @if(!userInfo.get('email')?.errors?.['required'] && !userInfo.get('email')?.errors?.['email'] && userInfo.get('email')?.errors?.['pattern']) {
+                  <small>Email must be from the domain gtu.ge.</small>
+                }
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" placeholder="**************" formControlName="password" 
+                     [class.ng-invalid]="userInfo.get('password')?.invalid && userInfo.get('password')?.touched" 
+                     [class.ng-touched]="userInfo.get('password')?.touched">
+              <div class="error" *ngIf="userInfo.get('password')?.invalid && userInfo.get('password')?.touched">
+                @if(userInfo.get('password')?.errors?.['required']) {
+                  <small>Password is required.</small>
+                }
+                @if(!userInfo.get('password')?.errors?.['required'] && userInfo.get('password')?.errors?.['minlength']) {
+                  <small>Password must be at least 8 characters long.</small>
+                }
+              </div>
+            </div>
+          
+            <div class="btncol">
+              <button type="submit" routerLink="../chat-bot"  class="btn" [disabled]="userInfo.invalid">Sign In</button>
+              <a href="#">Forgot password</a>
+            </div>
+          </form>
+          
+          
+          
+        <div class="imgRow"><img src="../../../assets/img/Line 2LeftLine.png" alt=""><span>or</span><img src="../../../assets/img/Line 3RightLine.png" alt=""></div>
+        <button class="googlebtn"> <img src="../../../assets/img/Icons/googleIcon.png" alt=""> sign in with Google</button>
+</div>
+
+</div>
